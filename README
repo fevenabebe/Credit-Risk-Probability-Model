@@ -1,0 +1,72 @@
+# Credit Risk Probability Model for Alternative Data
+
+## Project Overview
+
+This project develops a credit risk scoring system for Bati Bank's Buy-Now-Pay-Later (BNPL) service in partnership with an eCommerce platform. The objective is to estimate customer credit risk using transaction data and build an end-to-end machine learning solution for risk prediction, model deployment, and monitoring.
+
+The project follows an MLOps workflow including:
+
+- Business understanding
+- Exploratory Data Analysis (EDA)
+- Feature Engineering
+- Proxy Target Variable Creation
+- Model Training and Evaluation
+- Experiment Tracking with MLflow
+- API Deployment using FastAPI
+- Containerization using Docker
+- CI/CD Automation using GitHub Actions
+
+---
+
+## Credit Scoring Business Understanding
+
+### How does the Basel II Accord's emphasis on risk measurement influence the need for an interpretable and well-documented model?
+
+The Basel II Accord requires financial institutions to maintain transparent, reliable, and auditable risk assessment processes. Credit scoring models must therefore be interpretable and thoroughly documented so that risk decisions can be explained to regulators, auditors, and business stakeholders. Well-documented models support compliance, model validation, monitoring, and governance while ensuring consistent credit decisions.
+
+### Without a direct default label, why is a proxy variable necessary, and what business risks does proxy-based prediction introduce?
+
+The provided transaction dataset does not contain a direct indicator of customer default. Since supervised machine learning requires labeled examples, a proxy variable must be created to represent credit risk.
+
+A proxy target can be generated using customer behavioral indicators such as Recency, Frequency, and Monetary (RFM) metrics. Customers with low engagement and low transaction activity may be considered higher risk.
+
+However, proxy variables introduce risks:
+
+- The proxy may not accurately represent actual default behavior.
+- Misclassification may occur.
+- Model performance may be lower than models trained on true default data.
+- Business decisions may be influenced by assumptions rather than real repayment outcomes.
+
+Therefore, results should be interpreted carefully and continuously validated when actual repayment data becomes available.
+
+### What are the key trade-offs between a simple, interpretable model (e.g., Logistic Regression with WoE) and a high-performance model (e.g., Gradient Boosting) in a regulated financial context?
+
+#### Logistic Regression with WoE
+
+Advantages:
+
+- Easy to explain
+- Regulatory friendly
+- Transparent feature impacts
+- Simple to validate and monitor
+
+Disadvantages:
+
+- May not capture complex relationships
+- Potentially lower predictive performance
+
+#### Gradient Boosting Models
+
+Advantages:
+
+- Higher predictive accuracy
+- Captures nonlinear relationships
+- Handles feature interactions effectively
+
+Disadvantages:
+
+- More difficult to interpret
+- Greater regulatory scrutiny
+- Higher computational complexity
+
+In regulated financial environments, organizations often balance predictive performance with explainability. A slightly less accurate but interpretable model may be preferred when transparency and compliance are critical.
